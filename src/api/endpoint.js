@@ -163,7 +163,7 @@ export default class APIEndpoint {
       request: {
         method: 'POST',
         url: this._urlScheme.getList(options),
-        data: data,
+        data,
       },
       payload: {
         Model: this._Model,

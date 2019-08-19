@@ -28,9 +28,13 @@ function getDataFromResponse(response) {
 function makeDispatchFetch(fetch, store) {
   return async (action) => {
     const { url, ...options } = action.request;
+		const headers = options.headers = options.headers || {};
+		headers["Content-Type"] = "application/json";
+
     const abortController = new AbortController();
     options.signal = abortController.signal;
-
+		options.body = options.data ? JSON.stringify(options.data) : {};
+		delete options.data;
     const request = fetch(url, options);
 
     store.dispatch({
