@@ -4,14 +4,16 @@ import User from "models/user";
 import { connect } from "react-redux";
 import { users } from "api/state";
 import { Input, Button, Grid, Form } from "semantic-ui-react";
+import Segment from "pages/common/blocks/segment";
+import { withRouter } from "react-router-dom";
 
-const CreateUser = ({ user, create }) => {
+const CreateUser = ({ user, create, history }) => {
 
   React.useEffect(() => {
     if(user) {
-      console.log('user created >', user.getEmail())
+      history.push({pathname: "/connect", state: { user }});
     }
-  }, [user]);
+  }, [user, history]);
 
   const [email, setEmail] = React.useState(null);
   const [password, setPassword] = React.useState(null);
@@ -26,42 +28,47 @@ const CreateUser = ({ user, create }) => {
   });
 
   return (
-    <Form>
-      <Grid centered>
-        <Grid.Row>
-          <Grid.Column width="8">
-            <Form.Field>
-              <label>Email</label>
-              <Input placeholder='Email...' onChange={ (_,{ value }) => setEmail(value) }/>
-            </Form.Field>
-            <Form.Field>
-              <label>Mot de passe</label>
-              <Input placeholder='Mot de passe...' onChange={ (_,{ value }) => setPassword(value) }/>
-            </Form.Field>
-            <Form.Field>
-              <label>Nom</label>
-              <Input placeholder="Nom..." onChange={ (_,{ value }) => setLastname(value) }/>
-            </Form.Field>
-            <Form.Field>
-              <label>Prénom</label>
-              <Input placeholder="Prénom..." onChange={ (_,{ value }) => setFirstname(value) }/>
-            </Form.Field>
-            <Button
-              disabled={ !email || !password || !lastname || !firstname }
-              onClick={ handleCreate }
-              >
-              S'inscrire
-            </Button>
-          </Grid.Column>
-        </Grid.Row>
 
-      </Grid>
-    </Form>
+      <Form>
+        <Grid centered>
+          <Grid.Row>
+            <Grid.Column width="8">
+              <Segment title="Inscription" center>
+              <Form.Field>
+                <label>Email</label>
+                <Input placeholder='Email...' onChange={ (_,{ value }) => setEmail(value) }/>
+              </Form.Field>
+              <Form.Field>
+                <label>Mot de passe</label>
+                <Input placeholder='Mot de passe...' onChange={ (_,{ value }) => setPassword(value) }/>
+              </Form.Field>
+              <Form.Field>
+                <label>Nom</label>
+                <Input placeholder="Nom..." onChange={ (_,{ value }) => setLastname(value) }/>
+              </Form.Field>
+              <Form.Field>
+                <label>Prénom</label>
+                <Input placeholder="Prénom..." onChange={ (_,{ value }) => setFirstname(value) }/>
+              </Form.Field>
+              <Button
+                disabled={ !email || !password || !lastname || !firstname }
+                onClick={ handleCreate }
+                >
+                S'inscrire
+              </Button>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+
+        </Grid>
+      </Form>
   )
 }
 
 CreateUser.propTypes = {
   user: PropTypes.instanceOf(User),
+  create: PropTypes.func.isRequired,
+  history: PropTypes.any.isRequired,
 }
 
 CreateUser.defaultProps = {
@@ -76,4 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
   create: (values) => dispatch( users.create(values) )
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateUser)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateUser))
