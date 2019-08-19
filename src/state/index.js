@@ -3,7 +3,6 @@ import { clearApp } from "./reset"
 import { logger } from "redux-logger";
 import thunk from "redux-thunk";
 import { apiReducer, APIMiddleware } from "api";
-import { PAIEMOI_API } from "config/config";
 
 
 const paiemoiApiMiddleware = APIMiddleware();

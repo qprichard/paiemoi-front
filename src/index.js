@@ -14,7 +14,7 @@ const start = (application) => {
   ReactDOM.render(application, document.getElementById('root'));
 }
 
-const store = createStore();
+const store = createStore({});
 
 start(
   <Provider store={ store }>
