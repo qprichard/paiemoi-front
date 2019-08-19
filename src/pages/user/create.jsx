@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import User from "models/user";
 import { connect } from "react-redux";
 import { users } from "api/state";
-import { Input, Button, Grid, Form } from "semantic-ui-react";
+import { Input, Button, Grid, Form, Icon } from "semantic-ui-react";
 import Segment from "pages/common/blocks/segment";
 import { withRouter } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const CreateUser = ({ user, create, history }) => {
       <Form>
         <Grid centered>
           <Grid.Row>
-            <Grid.Column width="8">
+            <Grid.Column computer="8" mobile="16">
               <Segment title="Inscription" center>
               <Form.Field>
                 <label>Email</label>
@@ -40,7 +40,11 @@ const CreateUser = ({ user, create, history }) => {
               </Form.Field>
               <Form.Field>
                 <label>Mot de passe</label>
-                <Input placeholder='Mot de passe...' onChange={ (_,{ value }) => setPassword(value) }/>
+                <Input
+                  type="password"
+                  placeholder='Mot de passe...'
+                  onChange={ (_,{ value }) => setPassword(value) }
+                  />
               </Form.Field>
               <Form.Field>
                 <label>Nom</label>
@@ -51,6 +55,7 @@ const CreateUser = ({ user, create, history }) => {
                 <Input placeholder="Prénom..." onChange={ (_,{ value }) => setFirstname(value) }/>
               </Form.Field>
               <Button
+                primary
                 disabled={ !email || !password || !lastname || !firstname }
                 onClick={ handleCreate }
                 >

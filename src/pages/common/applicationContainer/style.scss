@@ -2,6 +2,19 @@
 
 body {
   background-color: $background-grey;
+
+  .ui.button.primary {
+    background-color: $dark-blue;
+    color: $white;
+
+    &:hover {
+      background-color: $dark-blue-hover;
+    }
+
+    &:focus {
+      background-color: $dark-blue;
+    }
+  }
 }
 
 .application {
