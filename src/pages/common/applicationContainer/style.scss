@@ -1,0 +1,62 @@
+@import "../css/colors.scss";
+
+body {
+  background-color: $background-grey;
+
+  .ui.button.primary {
+    background-color: $dark-blue;
+    color: $white;
+
+    &:hover {
+      background-color: $dark-blue-hover;
+    }
+
+    &:focus {
+      background-color: $dark-blue;
+    }
+  }
+}
+
+.application {
+  width: 100%;
+  font-family: "Arial";
+  font-weight: 400;
+
+  .application-header {
+    width: 100%;
+    background-color: $dark;
+    color: $white;
+    height: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    display: flex;
+
+    .application-title {
+      flex: 1 auto;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .application-connexion {
+      padding-right: 20px;
+
+      a {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .application-content {
+    margin: 20px;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+      color: $light-grey;
+    }
+  }
+}
