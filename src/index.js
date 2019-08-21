@@ -21,7 +21,7 @@ start(
     <Router>
       <Switch>
         <Route component = { ApplicationRoute } path="/paiemoi"/>
-        <Redirect to="/paiemoi"/>
+        <Redirect to="/home"/>
       </Switch>
     </Router>
   </Provider>

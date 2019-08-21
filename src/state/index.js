@@ -3,6 +3,7 @@ import { clearApp } from "./reset"
 import { logger } from "redux-logger";
 import thunk from "redux-thunk";
 import { apiReducer, APIMiddleware } from "api";
+import { connectReducer } from "api/connect/state";
 
 
 const paiemoiApiMiddleware = APIMiddleware();
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV === "development") {
 const reducers = [
   clearApp,
   apiReducer,
+  connectReducer,
 ]
 
 const reducerFn = (state, action) => {

@@ -1,4 +1,6 @@
 import { APIError } from "./utils";
+import { getAuthorizationHeader } from "api/connect/state";
+
 /* Encode connector, it raises APIError if the response fails */
 export function withAPIError(fetch) {
 	return async (url, options) => {
@@ -13,6 +15,16 @@ export function withAPIError(fetch) {
 		}
 		return response;
 	};
+}
+
+export function withAuthentication(fetch, store) {
+	return async (url, options={}) => {
+		options.headers = options.headers || {};
+		if(!('Authorization' in options.headers)) {
+			options.headers['Authorization'] = await getAuthorizationHeader(store.getState())
+		}
+		return fetch(url, options);
+	}
 }
 
 function getDataFromResponse(response) {

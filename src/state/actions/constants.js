@@ -1,6 +1,6 @@
 const Constants = {
   APP: {
-    RESET: Symbol("App_RESET")
+    RESET: Symbol("APP_RESET")
   }
 }
 

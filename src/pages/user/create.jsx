@@ -19,7 +19,7 @@ const CreateUser = ({ user, create, clear, history }) => {
 
   const [formValues, setFormValues] = React.useState({});
 
-  const handleCreate = () => create(formValues);
+  const handleCreate = React.useCallback(() => create(formValues), [formValues, create]);
 
   return (
 
